@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: oliver_dw_source
+    # Use quotes around the schema name to enforce the ALL CAPS casing in Snowflake
+    schema: "OLIVER_DW_SOURCE"
+    tables:
+      # Although the table names are usually uppercased by default,
+      # it's best practice to quote them if they were created with quotes, 
+      # but Fivetran often leaves them unquoted and Snowflake uppercases them.
+      # We'll use the lowercase name here, as the source() function
+      # often handles the table name, but the schema name is critical.
+      - name: customer
+      - name: employee
+      - name: orderline
+      - name: orders
+      - name: product
+      - name: store
