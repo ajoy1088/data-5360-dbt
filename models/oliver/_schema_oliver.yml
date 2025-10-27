@@ -73,7 +73,17 @@ models:
         description: "The calculated total price of the line item (QUANTITY * UNIT_PRICE)."
         tests:
           - not_null
-          # Note: We rely on the dbt_utils package already installed for unique, not_null, and relationships tests.
 
   - name: sales
     description: "Semantic layer model: Denormalized view of sales for easy consumption by analysts."
+    
+  - name: stg_employee_certifications
+    description: |
+      Staging model for employee certification data.
+      Parses the 'certification_json' field to extract certification name, cost, and awarded date.
+      
+  - name: fact_certification
+    description: |
+      Employee Certification Fact.
+      The grain of this table is **one record per certification awarded to an employee**.
+      Contains keys to dim_employee and dim_date, along with certification cost and name.
